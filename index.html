@@ -4,20 +4,29 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#080b16">
-  <meta name="description" content="ZRX & MST - Aluguel de bots para WhatsApp. Escolha seu plano e contrate agora.">
-  <title>ZRX & MST | Aluguel de Bots</title>
+  <meta name="theme-color" content="#080611">
+  <meta name="description" content="ZRX & MST — Plataforma oficial de aluguel de bots e automação.">
+  <meta name="author" content="ZRX & MST">
+  <title>ZRX & MST | Premium Bots</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;600;700;800;900&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
   <style>
     :root {
-      --primary: #00d9ff;
-      --secondary: #7755ff;
-      --background: #080b16;
-      --surface: rgba(15, 22, 40, .88);
-      --text: #f5f7ff;
-      --muted: #a5aec4;
-      --border: rgba(255,255,255,.11);
-      --shadow: 0 20px 60px rgba(0,0,0,.35);
+      --bg: #080611;
+      --panel: rgba(17, 12, 32, .82);
+      --panel-light: rgba(28, 19, 49, .86);
+      --purple: #a855f7;
+      --purple-light: #d8b4fe;
+      --blue: #38bdf8;
+      --white: #fff;
+      --muted: #bdb2d0;
+      --border: rgba(192, 132, 252, .23);
+      --gradient: linear-gradient(115deg, #9333ea, #2563eb);
+      --shadow: 0 18px 55px rgba(0, 0, 0, .35);
+      --radius: 22px;
     }
 
     * {
@@ -28,37 +37,38 @@
 
     html {
       scroll-behavior: smooth;
-      scroll-padding-top: 90px;
+      scroll-padding-top: 95px;
     }
 
     body {
       min-height: 100vh;
-      font-family: Arial, Helvetica, sans-serif;
-      color: var(--text);
-      background: var(--background);
       overflow-x: hidden;
+      background: var(--bg);
+      color: var(--white);
+      font-family: "Poppins", sans-serif;
     }
 
     body::before {
       content: "";
       position: fixed;
       inset: 0;
-      z-index: -2;
+      z-index: -3;
       background:
-        linear-gradient(rgba(5,8,18,.88), rgba(5,8,18,.94)),
         url("https://raw.githubusercontent.com/hackermesteriozo-blip/ZRX-MST/main/WhatsApp%20Image%202026-11-13%20at%2021.55.11.jpeg")
         center / cover no-repeat;
+      transform: scale(1.02);
     }
 
     body::after {
       content: "";
       position: fixed;
       inset: 0;
-      z-index: -1;
+      z-index: -2;
       pointer-events: none;
       background:
-        radial-gradient(circle at 15% 20%, rgba(0,217,255,.10), transparent 35%),
-        radial-gradient(circle at 85% 70%, rgba(119,85,255,.12), transparent 35%);
+        linear-gradient(180deg, rgba(5, 3, 14, .84), rgba(5, 3, 14, .94)),
+        radial-gradient(circle at 15% 15%, rgba(168, 85, 247, .22), transparent 38%),
+        radial-gradient(circle at 85% 65%, rgba(56, 189, 248, .17), transparent 38%);
     }
 
     a {
@@ -66,430 +76,494 @@
       text-decoration: none;
     }
 
-    button, input {
-      font: inherit;
-    }
-
     button {
+      font: inherit;
       cursor: pointer;
     }
 
+    button, a {
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    button:focus-visible,
+    a:focus-visible {
+      outline: 2px solid var(--blue);
+      outline-offset: 4px;
+    }
+
     .container {
-      width: min(1120px, 92%);
+      width: min(1160px, 92%);
       margin: auto;
     }
 
-    .topbar {
+    .gradient-text {
+      color: transparent;
+      background: linear-gradient(90deg, #fff, #c084fc, #38bdf8);
+      -webkit-background-clip: text;
+      background-clip: text;
+    }
+
+    .section {
+      padding: 100px 0;
+    }
+
+    .section-heading {
+      max-width: 720px;
+      margin: 0 auto 48px;
+      text-align: center;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      color: var(--blue);
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+    }
+
+    .section-heading h2 {
+      margin-top: 13px;
+      font-family: "Orbitron", sans-serif;
+      font-size: clamp(27px, 4vw, 42px);
+      line-height: 1.3;
+    }
+
+    .section-heading p {
+      margin-top: 15px;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.9;
+    }
+
+    /* HEADER */
+
+    header {
       position: sticky;
       top: 0;
       z-index: 100;
-      background: rgba(5,8,18,.94);
-      backdrop-filter: blur(18px);
       border-bottom: 1px solid var(--border);
+      background: rgba(7, 5, 17, .88);
+      backdrop-filter: blur(20px);
     }
 
-    .topbar-inner {
-      min-height: 65px;
+    .nav {
+      min-height: 78px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 15px;
+      gap: 25px;
     }
 
-    .brand {
-      font-size: 21px;
+    .logo {
+      font-family: "Orbitron", sans-serif;
+      font-size: 23px;
       font-weight: 900;
       letter-spacing: 1px;
+      white-space: nowrap;
     }
 
-    .brand span {
-      color: var(--primary);
+    .logo span {
+      color: var(--blue);
     }
 
-    .customizer {
+    .nav-links {
       display: flex;
       align-items: center;
-      gap: 8px;
-      flex-wrap: wrap;
+      gap: 24px;
     }
 
-    .theme-select {
-      max-width: 145px;
-      padding: 8px;
+    .nav-links a {
+      color: #d9d0e8;
+      font-size: 11px;
+      font-weight: 600;
+      transition: .25s;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.active {
+      color: var(--blue);
+    }
+
+    .nav-cta {
+      padding: 11px 17px;
+      border-radius: 10px;
+      background: var(--gradient);
+      font-size: 10px;
+      font-weight: 800;
+      white-space: nowrap;
+      transition: .25s;
+    }
+
+    .nav-cta:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(56, 189, 248, .2);
+    }
+
+    .menu-toggle {
+      display: none;
+      width: 44px;
+      height: 44px;
+      border: 1px solid var(--border);
+      border-radius: 12px;
       color: white;
-      background: #151c30;
-      border: 1px solid var(--border);
-      border-radius: 9px;
-      outline: none;
+      background: rgba(255,255,255,.06);
+      font-size: 21px;
     }
 
-    .color-picker {
-      width: 35px;
-      height: 35px;
-      padding: 2px;
-      border: 1px solid var(--border);
-      border-radius: 9px;
-      background: #151c30;
-    }
+    /* BUTTONS */
 
-    .reset-theme {
-      border: 1px solid var(--border);
-      border-radius: 9px;
-      padding: 9px 11px;
-      color: var(--text);
-      background: #151c30;
-    }
-
-    .hero {
-      min-height: 570px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      padding: 90px 0 75px;
-    }
-
-    .hero-content {
-      max-width: 780px;
-    }
-
-    .status {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 9px 15px;
-      border: 1px solid rgba(0,217,255,.3);
-      border-radius: 30px;
-      background: rgba(0,217,255,.08);
-      color: var(--primary);
-      font-size: 12px;
-      font-weight: bold;
-      letter-spacing: 1px;
-      margin-bottom: 25px;
-    }
-
-    .status-dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: #26e99a;
-      box-shadow: 0 0 12px #26e99a;
-    }
-
-    .hero h1 {
-      font-size: clamp(42px, 8vw, 76px);
-      line-height: 1.05;
-      font-weight: 900;
-      letter-spacing: -2px;
-    }
-
-    .hero h1 span {
-      color: var(--primary);
-      text-shadow: 0 0 35px rgba(0,217,255,.25);
-    }
-
-    .hero p {
-      max-width: 620px;
-      margin: 22px auto 30px;
-      color: var(--muted);
-      font-size: 17px;
-      line-height: 1.8;
-    }
-
-    .button {
+    .btn {
+      min-height: 48px;
       display: inline-flex;
       align-items: center;
       justify-content: center;
       gap: 9px;
-      padding: 14px 23px;
-      border-radius: 11px;
+      padding: 13px 22px;
       border: 1px solid transparent;
+      border-radius: 12px;
+      font-size: 11px;
       font-weight: 800;
-      transition: .25s;
+      letter-spacing: .3px;
+      transition: transform .25s, box-shadow .25s, border-color .25s;
     }
 
-    .button:hover {
-      transform: translateY(-3px);
+    .btn:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 28px rgba(56, 189, 248, .17);
     }
 
-    .button-primary {
-      color: #06101a;
-      background: var(--primary);
-      box-shadow: 0 8px 30px rgba(0,217,255,.18);
+    .btn-primary {
+      color: white;
+      background: var(--gradient);
     }
 
-    .button-outline {
-      color: var(--text);
+    .btn-outline {
+      color: white;
+      border-color: rgba(192, 132, 252, .5);
+      background: rgba(255,255,255,.045);
+    }
+
+    .btn-soft {
+      color: #e9d5ff;
       border-color: var(--border);
-      background: rgba(255,255,255,.04);
+      background: rgba(168, 85, 247, .12);
     }
 
-    .hero-buttons {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 12px;
-    }
+    /* HERO */
 
-    section {
-      padding: 75px 0;
-    }
-
-    .section-heading {
+    .hero {
+      min-height: 740px;
+      display: grid;
+      place-items: center;
+      padding: 100px 0 85px;
       text-align: center;
-      margin-bottom: 38px;
     }
 
-    .section-heading small {
-      color: var(--primary);
-      font-weight: 900;
+    .hero-content {
+      max-width: 940px;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      padding: 11px 18px;
+      margin-bottom: 27px;
+      border: 1px solid rgba(192, 132, 252, .4);
+      border-radius: 50px;
+      color: #eadbff;
+      background: rgba(168, 85, 247, .12);
+      font-size: 9px;
+      font-weight: 800;
       letter-spacing: 2px;
     }
 
-    .section-heading h2 {
-      font-size: clamp(27px, 5vw, 40px);
-      margin: 12px 0;
+    .hero h1 {
+      font-family: "Orbitron", sans-serif;
+      font-size: clamp(46px, 9vw, 100px);
+      font-weight: 900;
+      line-height: 1.15;
+      letter-spacing: -3px;
+      filter: drop-shadow(0 0 28px rgba(168, 85, 247, .3));
     }
 
-    .section-heading p {
-      color: var(--muted);
-      line-height: 1.7;
+    .hero-subtitle {
+      margin-top: 14px;
+      color: var(--blue);
+      font-family: "Orbitron", sans-serif;
+      font-size: clamp(11px, 2vw, 15px);
+      font-weight: 700;
+      letter-spacing: 4px;
     }
 
-    .search-box {
-      display: block;
-      width: min(430px, 100%);
-      margin: 0 auto 30px;
-      padding: 14px 17px;
-      color: var(--text);
-      background: var(--surface);
+    .hero-description {
+      max-width: 690px;
+      margin: 25px auto 0;
+      color: #ddd5e9;
+      font-size: 14px;
+      line-height: 2;
+    }
+
+    .hero-actions {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 34px;
+    }
+
+    .hero-stats {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 15px;
+      margin-top: 55px;
+    }
+
+    .stat {
+      min-width: 155px;
+      padding: 18px 22px;
       border: 1px solid var(--border);
-      border-radius: 12px;
-      outline: none;
+      border-radius: 16px;
+      background: rgba(13, 9, 26, .75);
+      backdrop-filter: blur(14px);
+      box-shadow: var(--shadow);
     }
 
-    .search-box:focus {
-      border-color: var(--primary);
+    .stat strong {
+      display: block;
+      color: var(--purple-light);
+      font-family: "Orbitron", sans-serif;
+      font-size: 17px;
     }
+
+    .stat span {
+      display: block;
+      margin-top: 7px;
+      color: var(--muted);
+      font-size: 9px;
+    }
+
+    /* CARDS */
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 20px;
+    }
+
+    .card {
+      position: relative;
+      overflow: hidden;
+      padding: 29px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: var(--panel);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(16px);
+      transition: transform .3s, border-color .3s, box-shadow .3s;
+    }
+
+    .card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 15%;
+      width: 70%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--purple), transparent);
+      opacity: .65;
+    }
+
+    .card:hover {
+      transform: translateY(-7px);
+      border-color: rgba(56, 189, 248, .65);
+      box-shadow: 0 20px 55px rgba(56, 189, 248, .10);
+    }
+
+    .card-icon {
+      display: grid;
+      place-items: center;
+      width: 55px;
+      height: 55px;
+      margin-bottom: 19px;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      background: rgba(168, 85, 247, .13);
+      font-size: 25px;
+    }
+
+    .card h3 {
+      margin-bottom: 11px;
+      font-size: 17px;
+    }
+
+    .card p {
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.9;
+    }
+
+    /* PLANS */
 
     .plans-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 20px;
+    }
+
+    .plan-card {
+      text-align: center;
+    }
+
+    .plan-card.featured {
+      border-color: rgba(168, 85, 247, .85);
+      background: linear-gradient(160deg, rgba(68, 35, 104, .68), rgba(14, 11, 30, .94));
+      box-shadow: 0 0 38px rgba(168, 85, 247, .17);
+    }
+
+    .plan-label {
+      display: inline-block;
+      padding: 7px 13px;
+      margin-bottom: 16px;
+      border-radius: 50px;
+      background: var(--gradient);
+      font-size: 9px;
+      font-weight: 900;
+      letter-spacing: 1px;
+    }
+
+    .plan-period {
+      color: var(--purple-light);
+      font-size: 11px;
+    }
+
+    .plan-price {
+      margin: 19px 0;
+      font-family: "Orbitron", sans-serif;
+      font-size: 39px;
+      font-weight: 900;
+    }
+
+    .plan-price small {
+      font-size: 14px;
+    }
+
+    .plan-card .btn {
+      width: 100%;
+      margin-top: 20px;
+    }
+
+    .plan-note {
+      margin-top: 13px;
+      color: var(--muted);
+      font-size: 9px;
+    }
+
+    /* STEPS */
+
+    .steps {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 20px;
     }
 
-    .plan-card {
-      position: relative;
-      display: flex;
-      flex-direction: column;
-      padding: 27px;
-      border: 1px solid var(--border);
-      border-radius: 18px;
-      background: var(--surface);
-      backdrop-filter: blur(15px);
-      box-shadow: var(--shadow);
-      transition: .25s;
-    }
-
-    .plan-card:hover {
-      transform: translateY(-7px);
-      border-color: var(--primary);
-    }
-
-    .plan-card.featured {
-      border-color: var(--primary);
-      box-shadow: 0 0 35px rgba(0,217,255,.10);
-    }
-
-    .plan-tag {
-      align-self: flex-start;
-      padding: 6px 10px;
-      border-radius: 20px;
-      background: rgba(0,217,255,.12);
-      color: var(--primary);
-      font-size: 11px;
-      font-weight: 900;
-      margin-bottom: 17px;
-    }
-
-    .plan-card h3 {
-      font-size: 23px;
-      margin-bottom: 8px;
-    }
-
-    .plan-duration {
-      color: var(--muted);
-      font-size: 14px;
-    }
-
-    .plan-price {
-      font-size: 38px;
-      font-weight: 900;
-      margin: 23px 0;
-    }
-
-    .plan-price small {
-      color: var(--muted);
-      font-size: 14px;
-      font-weight: normal;
-    }
-
-    .plan-features {
-      list-style: none;
-      margin-bottom: 25px;
-      flex: 1;
-    }
-
-    .plan-features li {
-      color: var(--muted);
-      padding: 9px 0;
-      border-bottom: 1px solid rgba(255,255,255,.06);
-      font-size: 14px;
-    }
-
-    .plan-features li::before {
-      content: "✓";
-      color: var(--primary);
-      font-weight: bold;
-      margin-right: 9px;
-    }
-
-    .plan-card .button {
-      width: 100%;
-    }
-
-    .empty-message {
-      display: none;
+    .step-card {
       text-align: center;
-      color: var(--muted);
-      padding: 25px;
-    }
-
-    .features-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 18px;
-    }
-
-    .feature-card {
-      padding: 25px;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 15px;
-    }
-
-    .feature-icon {
-      font-size: 30px;
-      margin-bottom: 17px;
-    }
-
-    .feature-card h3 {
-      margin-bottom: 10px;
-    }
-
-    .feature-card p {
-      color: var(--muted);
-      line-height: 1.7;
-      font-size: 14px;
-    }
-
-    .steps {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 18px;
-    }
-
-    .step {
-      padding: 25px;
-      text-align: center;
-      border: 1px solid var(--border);
-      border-radius: 15px;
-      background: var(--surface);
     }
 
     .step-number {
-      width: 42px;
-      height: 42px;
       display: grid;
       place-items: center;
-      margin: 0 auto 15px;
-      border-radius: 50%;
-      color: #06101a;
-      background: var(--primary);
+      width: 54px;
+      height: 54px;
+      margin: 0 auto 20px;
+      border-radius: 17px;
+      background: var(--gradient);
+      font-family: "Orbitron", sans-serif;
+      font-size: 17px;
       font-weight: 900;
+      box-shadow: 0 8px 24px rgba(147, 51, 234, .25);
     }
 
-    .step p {
-      margin-top: 9px;
-      color: var(--muted);
-      line-height: 1.6;
-      font-size: 14px;
-    }
+    /* PROMO */
 
-    .community-box {
-      padding: 40px 25px;
+    .promo {
+      position: relative;
+      overflow: hidden;
+      padding: 60px 25px;
+      border: 1px solid rgba(56, 189, 248, .35);
+      border-radius: 28px;
+      background: linear-gradient(120deg, rgba(147, 51, 234, .22), rgba(37, 99, 235, .18));
       text-align: center;
-      background: linear-gradient(130deg, rgba(0,217,255,.10), rgba(119,85,255,.13));
-      border: 1px solid var(--border);
-      border-radius: 20px;
+      backdrop-filter: blur(16px);
+      box-shadow: var(--shadow);
     }
 
-    .community-box h2 {
-      font-size: 30px;
-      margin-bottom: 13px;
+    .promo::before {
+      content: "ZRX";
+      position: absolute;
+      right: -15px;
+      bottom: -70px;
+      color: rgba(255,255,255,.035);
+      font-family: "Orbitron", sans-serif;
+      font-size: 170px;
+      font-weight: 900;
+      pointer-events: none;
     }
 
-    .community-box p {
+    .promo h2 {
+      position: relative;
+      font-family: "Orbitron", sans-serif;
+      font-size: clamp(22px, 4vw, 36px);
+    }
+
+    .promo p {
+      position: relative;
+      max-width: 570px;
+      margin: 16px auto 25px;
       color: var(--muted);
-      line-height: 1.7;
-      margin-bottom: 25px;
+      font-size: 12px;
+      line-height: 1.9;
     }
 
-    .community-links {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 12px;
+    .promo .btn {
+      position: relative;
     }
 
-    .faq-list {
-      max-width: 800px;
-      margin: auto;
-    }
+    /* CHANNELS */
 
-    .faq-item {
-      margin-bottom: 12px;
-      padding: 18px;
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      background: var(--surface);
-    }
-
-    .faq-item summary {
-      cursor: pointer;
-      font-weight: bold;
-    }
-
-    .faq-item p {
-      color: var(--muted);
-      line-height: 1.7;
-      margin-top: 13px;
-    }
-
-    .contact-grid {
+    .channel-grid {
       display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 18px;
-      max-width: 760px;
-      margin: auto;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 19px;
     }
+
+    .channel-card {
+      text-align: center;
+    }
+
+    .channel-card .card-icon {
+      margin-right: auto;
+      margin-left: auto;
+    }
+
+    .channel-card .btn,
+    .contact-card .btn {
+      width: 100%;
+      margin-top: 19px;
+    }
+
+    /* CONTACT */
 
     .contact-card {
-      padding: 25px;
       text-align: center;
-      border: 1px solid var(--border);
-      border-radius: 15px;
-      background: var(--surface);
+    }
+
+    .contact-card .card-icon {
+      margin-right: auto;
+      margin-left: auto;
     }
 
     .contact-card h3 {
@@ -497,845 +571,1251 @@
     }
 
     .contact-card p {
-      color: var(--muted);
-      margin-bottom: 18px;
-      font-size: 14px;
+      min-height: 42px;
     }
+
+    .responsible {
+      margin-top: 28px;
+      color: var(--muted);
+      text-align: center;
+      font-size: 12px;
+    }
+
+    .responsible strong {
+      color: var(--purple-light);
+    }
+
+    /* FAQ */
+
+    .faq-list {
+      display: grid;
+      gap: 13px;
+      max-width: 850px;
+      margin: auto;
+    }
+
+    .faq-item {
+      overflow: hidden;
+      border: 1px solid var(--border);
+      border-radius: 15px;
+      background: rgba(15, 10, 28, .9);
+    }
+
+    .faq-question {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 15px;
+      padding: 20px;
+      border: 0;
+      color: white;
+      background: transparent;
+      text-align: left;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .faq-symbol {
+      color: var(--blue);
+      font-size: 20px;
+      transition: transform .25s;
+    }
+
+    .faq-answer {
+      display: none;
+      padding: 0 20px 20px;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.9;
+    }
+
+    .faq-item.open .faq-answer {
+      display: block;
+    }
+
+    .faq-item.open .faq-symbol {
+      transform: rotate(45deg);
+    }
+
+    /* FOOTER */
 
     footer {
-      padding: 35px 0;
-      text-align: center;
+      padding: 55px 0 35px;
       border-top: 1px solid var(--border);
-      color: var(--muted);
+      background: rgba(5, 3, 13, .92);
+      text-align: center;
+    }
+
+    .footer-brand {
+      font-family: "Orbitron", sans-serif;
+      font-size: 27px;
+      font-weight: 900;
+    }
+
+    .footer-subtitle {
+      margin-top: 9px;
+      color: var(--blue);
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 3px;
+    }
+
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 22px;
+      margin-top: 25px;
+    }
+
+    .footer-links a {
+      color: #d5c9e5;
+      font-size: 10px;
+      transition: .2s;
+    }
+
+    .footer-links a:hover {
+      color: var(--blue);
+    }
+
+    footer .copyright {
+      margin-top: 26px;
+      color: #9589a9;
+      font-size: 10px;
       line-height: 1.8;
-      font-size: 13px;
     }
 
-    footer strong {
-      color: var(--primary);
-    }
+    /* FLOATING BUTTONS */
 
-    .floating-group {
+    .float-group,
+    .music-button {
       position: fixed;
       right: 20px;
-      bottom: 20px;
-      z-index: 80;
-      width: 55px;
-      height: 55px;
-      display: grid;
-      place-items: center;
-      border-radius: 50%;
+      z-index: 120;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      padding: 13px 17px;
+      border-radius: 50px;
       color: white;
-      background: #20c86b;
-      font-size: 25px;
-      box-shadow: 0 5px 25px rgba(0,0,0,.35);
+      font-size: 10px;
+      font-weight: 800;
+      box-shadow: 0 8px 28px rgba(0,0,0,.4);
     }
 
-    .back-top {
-      position: fixed;
-      left: 20px;
-      bottom: 20px;
-      z-index: 80;
-      width: 42px;
-      height: 42px;
-      display: none;
-      place-items: center;
-      color: var(--text);
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: 50%;
+    .float-group {
+      bottom: 18px;
+      background: var(--gradient);
     }
 
-    .progress {
-      position: fixed;
-      top: 0;
-      left: 0;
-      z-index: 200;
-      width: 0;
-      height: 3px;
-      background: var(--primary);
+    .music-button {
+      bottom: 73px;
+      border: 1px solid rgba(192, 132, 252, .5);
+      background: rgba(15, 10, 29, .97);
     }
 
-    dialog {
-      width: min(440px, 92%);
-      margin: auto;
-      padding: 28px;
-      color: var(--text);
-      background: #10182b;
-      border: 1px solid var(--primary);
-      border-radius: 18px;
-      box-shadow: var(--shadow);
+    /* MODAL */
+
+    .modal {
+      width: min(430px, calc(100% - 30px));
+      padding: 30px;
+      border: 1px solid rgba(168, 85, 247, .65);
+      border-radius: 23px;
+      color: white;
+      background: #100b20;
+      text-align: center;
+      box-shadow: 0 20px 80px rgba(0,0,0,.6);
     }
 
-    dialog::backdrop {
-      background: rgba(0,0,0,.75);
-      backdrop-filter: blur(5px);
+    .modal::backdrop {
+      background: rgba(0,0,0,.82);
+      backdrop-filter: blur(9px);
     }
 
-    dialog h2 {
-      margin-bottom: 10px;
+    .modal h2 {
+      font-family: "Orbitron", sans-serif;
+      font-size: 19px;
     }
 
-    dialog p {
+    .modal p {
+      margin: 15px 0 20px;
       color: var(--muted);
-      line-height: 1.7;
-      margin-bottom: 20px;
+      font-size: 12px;
+      line-height: 1.8;
     }
 
-    .dialog-actions {
-      display: grid;
-      gap: 10px;
-    }
-
-    .close-dialog {
+    .modal .btn {
       width: 100%;
-      padding: 12px;
+      margin-top: 10px;
+    }
+
+    .modal-close {
+      margin-top: 19px;
+      padding: 9px 15px;
+      border: 0;
       color: var(--muted);
       background: transparent;
-      border: 1px solid var(--border);
-      border-radius: 10px;
+      font-size: 11px;
     }
+
+    /* TOAST */
 
     .toast {
       position: fixed;
       left: 50%;
-      bottom: 85px;
-      z-index: 300;
-      transform: translateX(-50%) translateY(20px);
-      padding: 12px 18px;
+      bottom: 25px;
+      z-index: 400;
+      max-width: calc(100% - 30px);
+      padding: 13px 19px;
+      border: 1px solid var(--border);
+      border-radius: 13px;
       color: white;
-      background: #17233a;
-      border: 1px solid var(--primary);
-      border-radius: 10px;
+      background: #1d1530;
+      font-size: 11px;
+      text-align: center;
       opacity: 0;
+      transform: translate(-50%, 20px);
       pointer-events: none;
       transition: .25s;
     }
 
-    .toast.show {
+    .toast.visible {
       opacity: 1;
-      transform: translateX(-50%) translateY(0);
+      transform: translate(-50%, 0);
     }
 
-    @media (max-width: 850px) {
+    #youtube-player {
+      position: fixed;
+      left: -20px;
+      bottom: 0;
+      width: 1px;
+      height: 1px;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    /* REVEAL */
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(22px);
+      transition: opacity .7s ease, transform .7s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* MOBILE */
+
+    @media(max-width: 900px) {
+      .nav-cta {
+        display: none;
+      }
+
+      .nav-links {
+        gap: 15px;
+      }
+
+      .cards,
       .plans-grid,
-      .features-grid {
-        grid-template-columns: repeat(2, 1fr);
+      .channel-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
       }
     }
 
-    @media (max-width: 600px) {
-      .topbar-inner {
-        padding: 12px 0;
-        align-items: flex-start;
-        flex-direction: column;
+    @media(max-width: 760px) {
+      .menu-toggle {
+        display: block;
       }
 
-      .customizer {
-        width: 100%;
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 78px;
+        left: 0;
+        right: 0;
+        padding: 18px 5%;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+        border-bottom: 1px solid var(--border);
+        background: rgba(7, 5, 17, .98);
+      }
+
+      .nav-links.open {
+        display: flex;
+      }
+
+      .nav-links a {
+        padding: 14px 0;
+        border-bottom: 1px solid rgba(255,255,255,.05);
       }
 
       .hero {
-        min-height: 500px;
-        padding: 70px 0;
+        min-height: 650px;
+        padding: 85px 0;
       }
 
       .hero h1 {
-        letter-spacing: -1px;
+        letter-spacing: -2px;
       }
 
-      .hero p {
-        font-size: 15px;
-      }
-
-      section {
-        padding: 55px 0;
-      }
-
-      .plans-grid,
-      .features-grid,
-      .steps,
-      .contact-grid {
+      .steps {
         grid-template-columns: 1fr;
       }
 
-      .plan-card {
-        padding: 23px;
-      }
-
-      .community-box h2 {
-        font-size: 25px;
+      .section {
+        padding: 75px 0;
       }
     }
 
-    @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after {
-        scroll-behavior: auto !important;
-        transition-duration: .01ms !important;
+    @media(max-width: 560px) {
+      .cards,
+      .plans-grid,
+      .channel-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        min-height: auto;
+        padding: 90px 0 75px;
+      }
+
+      .hero h1 {
+        font-size: clamp(40px, 12vw, 58px);
+      }
+
+      .hero-description {
+        font-size: 12px;
+      }
+
+      .hero-badge {
+        font-size: 8px;
+        letter-spacing: 1px;
+      }
+
+      .hero-stats {
+        gap: 9px;
+      }
+
+      .stat {
+        min-width: 125px;
+        padding: 14px;
+      }
+
+      .stat strong {
+        font-size: 13px;
+      }
+
+      .card {
+        padding: 24px;
+      }
+
+      .section {
+        padding: 65px 0;
+      }
+
+      .float-group,
+      .music-button {
+        right: 12px;
+      }
+
+      .promo {
+        padding: 43px 20px;
+      }
+
+      .footer-links {
+        gap: 14px;
+      }
+    }
+
+    @media(prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      *,
+      *::before,
+      *::after {
         animation-duration: .01ms !important;
+        transition-duration: .01ms !important;
+      }
+
+      .reveal {
+        opacity: 1;
+        transform: none;
       }
     }
   </style>
 </head>
 
 <body>
-  <div class="progress" id="progress"></div>
 
-  <header class="topbar">
-    <div class="container topbar-inner">
-      <a class="brand" href="#inicio">ZRX <span>&</span> MST</a>
+  <!-- CABEÇALHO -->
 
-      <div class="customizer">
-        <select class="theme-select" id="themeSelect" aria-label="Escolher tema">
-          <option value="neon">Tema Neon</option>
-          <option value="ocean">Tema Ocean</option>
-          <option value="pink">Tema Pink</option>
-          <option value="green">Tema Green</option>
-          <option value="ruby">Tema Ruby</option>
-          <option value="gold">Tema Gold</option>
-          <option value="light">Tema Light</option>
-        </select>
+  <header>
+    <nav class="nav container" aria-label="Navegação principal">
+      <a class="logo" href="#inicio">ZRX <span>&</span> MST</a>
 
-        <input
-          class="color-picker"
-          id="colorPicker"
-          type="color"
-          value="#00d9ff"
-          aria-label="Escolher cor personalizada"
-          title="Escolher cor personalizada"
-        >
-
-        <button class="reset-theme" id="resetTheme" type="button">
-          Restaurar
-        </button>
+      <div class="nav-links" id="navLinks">
+        <a href="#inicio">Início</a>
+        <a href="#sobre">Sobre</a>
+        <a href="#planos">Planos</a>
+        <a href="#como-funciona">Como funciona</a>
+        <a href="#canais">Canais</a>
+        <a href="#contato">Contato</a>
       </div>
-    </div>
+
+      <a class="nav-cta" href="#planos">VER PLANOS ↗</a>
+
+      <button
+        class="menu-toggle"
+        id="menuToggle"
+        type="button"
+        aria-label="Abrir menu"
+        aria-expanded="false">
+        ☰
+      </button>
+    </nav>
   </header>
 
   <main>
+
+    <!-- HERO -->
+
     <section class="hero" id="inicio">
-      <div class="container hero-content">
-        <div class="status">
-          <span class="status-dot"></span>
-          ALUGUEL DE BOTS PARA WHATSAPP
+      <div class="hero-content container">
+
+        <div class="hero-badge">
+          ✦ PLATAFORMA OFICIAL • BOTS E AUTOMAÇÃO ✦
         </div>
 
-        <h1>ZRX <span>& MST</span></h1>
+        <h1 class="gradient-text">ZRX & MST</h1>
 
-        <p>
-          Tecnologia, praticidade e soluções para seu WhatsApp.
-          Escolha seu plano e conheça nossos serviços.
+        <div class="hero-subtitle">
+          TECNOLOGIA • AUTOMAÇÃO • INOVAÇÃO
+        </div>
+
+        <p class="hero-description">
+          Bem-vindo à plataforma oficial ZRX & MST.
+          Descubra nossos planos de aluguel de bots,
+          escolha a opção ideal para seu projeto e
+          entre em contato com nossa equipe.
         </p>
 
-        <div class="hero-buttons">
-          <a class="button button-primary" href="#planos">
-            Ver planos →
+        <div class="hero-actions">
+          <a href="#planos" class="btn btn-primary">
+            🚀 CONHECER PLANOS
           </a>
 
-          <a class="button button-outline" href="#contato">
-            Falar com atendimento
+          <a
+            href="https://chat.whatsapp.com/Hg1sLL4q61g4iVhb9YNX6S"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn btn-outline">
+            💬 GRUPO OFICIAL
           </a>
         </div>
+
+        <div class="hero-stats">
+          <div class="stat">
+            <strong>05</strong>
+            <span>PLANOS DISPONÍVEIS</span>
+          </div>
+
+          <div class="stat">
+            <strong>02</strong>
+            <span>CANAIS DE ATENDIMENTO</span>
+          </div>
+
+          <div class="stat">
+            <strong>ZRX</strong>
+            <span>COMUNIDADE OFICIAL</span>
+          </div>
+        </div>
+
       </div>
     </section>
 
-    <section id="planos">
+    <!-- SOBRE -->
+
+    <section class="section" id="sobre">
       <div class="container">
-        <div class="section-heading">
-          <small>NOSSOS PLANOS</small>
-          <h2>Escolha sua assinatura</h2>
-          <p>Encontre o período que combina com sua necessidade.</p>
+
+        <div class="section-heading reveal">
+          <span class="eyebrow">CONHEÇA NOSSA PLATAFORMA</span>
+          <h2>Sobre a <span class="gradient-text">ZRX & MST</span></h2>
+          <p>
+            Uma plataforma para consultar planos,
+            conhecer nossos canais e solicitar atendimento.
+          </p>
         </div>
 
-        <input
-          class="search-box"
-          id="planSearch"
-          type="search"
-          placeholder="Pesquisar plano..."
-          aria-label="Pesquisar plano"
-        >
+        <div class="cards">
 
-        <div class="plans-grid" id="plansGrid">
-          <article class="plan-card" data-search="30 dias mensal">
-            <span class="plan-tag">PLANO INICIAL</span>
-            <h3>Plano Mensal</h3>
-            <span class="plan-duration">30 dias de duração</span>
-            <div class="plan-price">R$20<small> / plano</small></div>
-
-            <ul class="plan-features">
-              <li>30 dias de assinatura</li>
-              <li>Atendimento para contratação</li>
-              <li>Suporte conforme condições do serviço</li>
-            </ul>
-
-            <button class="button button-primary select-plan"
-              data-plan="30 dias" data-price="R$20">
-              Contratar plano
-            </button>
-          </article>
-
-          <article class="plan-card featured" data-search="2 meses bimestral">
-            <span class="plan-tag">MAIS PROCURADO</span>
-            <h3>Plano Bimestral</h3>
-            <span class="plan-duration">2 meses de duração</span>
-            <div class="plan-price">R$30<small> / plano</small></div>
-
-            <ul class="plan-features">
-              <li>2 meses de assinatura</li>
-              <li>Atendimento para contratação</li>
-              <li>Suporte conforme condições do serviço</li>
-            </ul>
-
-            <button class="button button-primary select-plan"
-              data-plan="2 meses" data-price="R$30">
-              Contratar plano
-            </button>
-          </article>
-
-          <article class="plan-card" data-search="4 meses quadrimestral">
-            <span class="plan-tag">PLANO ESPECIAL</span>
-            <h3>Plano Quadrimestral</h3>
-            <span class="plan-duration">4 meses de duração</span>
-            <div class="plan-price">R$50<small> / plano</small></div>
-
-            <ul class="plan-features">
-              <li>4 meses de assinatura</li>
-              <li>Atendimento para contratação</li>
-              <li>Suporte conforme condições do serviço</li>
-            </ul>
-
-            <button class="button button-primary select-plan"
-              data-plan="4 meses" data-price="R$50">
-              Contratar plano
-            </button>
-          </article>
-
-          <article class="plan-card" data-search="6 meses semestral">
-            <span class="plan-tag">PLANO AVANÇADO</span>
-            <h3>Plano Semestral</h3>
-            <span class="plan-duration">6 meses de duração</span>
-            <div class="plan-price">R$150<small> / plano</small></div>
-
-            <ul class="plan-features">
-              <li>6 meses de assinatura</li>
-              <li>Atendimento para contratação</li>
-              <li>Suporte conforme condições do serviço</li>
-            </ul>
-
-            <button class="button button-primary select-plan"
-              data-plan="6 meses" data-price="R$150">
-              Contratar plano
-            </button>
-          </article>
-
-          <article class="plan-card" data-search="10 meses anual">
-            <span class="plan-tag">PLANO PREMIUM</span>
-            <h3>Plano Premium</h3>
-            <span class="plan-duration">10 meses de duração</span>
-            <div class="plan-price">R$200<small> / plano</small></div>
-
-            <ul class="plan-features">
-              <li>10 meses de assinatura</li>
-              <li>Atendimento para contratação</li>
-              <li>Suporte conforme condições do serviço</li>
-            </ul>
-
-            <button class="button button-primary select-plan"
-              data-plan="10 meses" data-price="R$200">
-              Contratar plano
-            </button>
-          </article>
-        </div>
-
-        <p class="empty-message" id="plansEmpty">
-          Nenhum plano encontrado.
-        </p>
-      </div>
-    </section>
-
-    <section id="vantagens">
-      <div class="container">
-        <div class="section-heading">
-          <small>POR QUE ESCOLHER?</small>
-          <h2>Conheça nossas vantagens</h2>
-          <p>Um espaço pensado para facilitar sua contratação.</p>
-        </div>
-
-        <div class="features-grid">
-          <article class="feature-card">
-            <div class="feature-icon">⚡</div>
+          <article class="card reveal">
+            <div class="card-icon">⚡</div>
             <h3>Praticidade</h3>
-            <p>Escolha seu plano e entre em contato com o atendimento.</p>
+            <p>
+              Consulte as opções disponíveis e inicie
+              seu atendimento em poucos cliques.
+            </p>
           </article>
 
-          <article class="feature-card">
-            <div class="feature-icon">🛡️</div>
-            <h3>Atendimento</h3>
-            <p>Fale diretamente com os responsáveis pela contratação.</p>
+          <article class="card reveal">
+            <div class="card-icon">🤖</div>
+            <h3>Automação</h3>
+            <p>
+              Conheça as opções de aluguel de bots
+              apresentadas pela nossa equipe.
+            </p>
           </article>
 
-          <article class="feature-card">
-            <div class="feature-icon">🤖</div>
-            <h3>Tecnologia</h3>
-            <p>Soluções de automação para facilitar tarefas no WhatsApp.</p>
+          <article class="card reveal">
+            <div class="card-icon">💎</div>
+            <h3>Experiência</h3>
+            <p>
+              Navegue por uma página organizada,
+              moderna e preparada para dispositivos móveis.
+            </p>
           </article>
+
         </div>
       </div>
     </section>
 
-    <section id="como-funciona">
+    <!-- PLANOS -->
+
+    <section class="section" id="planos">
       <div class="container">
-        <div class="section-heading">
-          <small>PASSO A PASSO</small>
-          <h2>Como contratar?</h2>
-          <p>O processo é simples e direto.</p>
+
+        <div class="section-heading reveal">
+          <span class="eyebrow">ESCOLHA SUA OPÇÃO</span>
+          <h2>Nossos <span class="gradient-text">Planos</span></h2>
+          <p>
+            Selecione o período desejado e fale diretamente
+            com um vendedor pelo WhatsApp.
+          </p>
+        </div>
+
+        <div class="plans-grid">
+
+          <article class="card plan-card reveal">
+            <div class="card-icon">🚀</div>
+            <h3>Plano Inicial</h3>
+            <p class="plan-period">30 dias de aluguel</p>
+            <div class="plan-price">R$20</div>
+            <p>Uma opção para conhecer o serviço.</p>
+            <button
+              class="btn btn-primary"
+              type="button"
+              data-plan="30 dias"
+              data-price="R$20">
+              CONTRATAR AGORA
+            </button>
+            <div class="plan-note">Atendimento pelo WhatsApp</div>
+          </article>
+
+          <article class="card plan-card reveal">
+            <div class="card-icon">⚡</div>
+            <h3>Plano Plus</h3>
+            <p class="plan-period">2 meses de aluguel</p>
+            <div class="plan-price">R$30</div>
+            <p>Uma opção para um período maior.</p>
+            <button
+              class="btn btn-primary"
+              type="button"
+              data-plan="2 meses"
+              data-price="R$30">
+              CONTRATAR AGORA
+            </button>
+            <div class="plan-note">Atendimento pelo WhatsApp</div>
+          </article>
+
+          <article class="card plan-card featured reveal">
+            <span class="plan-label">✦ EM DESTAQUE</span>
+            <div class="card-icon">👑</div>
+            <h3>Plano Pro</h3>
+            <p class="plan-period">4 meses de aluguel</p>
+            <div class="plan-price">R$50</div>
+            <p>Mais tempo para seu projeto.</p>
+            <button
+              class="btn btn-primary"
+              type="button"
+              data-plan="4 meses"
+              data-price="R$50">
+              CONTRATAR AGORA
+            </button>
+            <div class="plan-note">Atendimento pelo WhatsApp</div>
+          </article>
+
+          <article class="card plan-card reveal">
+            <div class="card-icon">💠</div>
+            <h3>Plano Premium</h3>
+            <p class="plan-period">6 meses de aluguel</p>
+            <div class="plan-price">R$150</div>
+            <p>Uma opção de longa duração.</p>
+            <button
+              class="btn btn-primary"
+              type="button"
+              data-plan="6 meses"
+              data-price="R$150">
+              CONTRATAR AGORA
+            </button>
+            <div class="plan-note">Atendimento pelo WhatsApp</div>
+          </article>
+
+          <article class="card plan-card reveal">
+            <div class="card-icon">🔥</div>
+            <h3>Plano Ultimate</h3>
+            <p class="plan-period">10 meses de aluguel</p>
+            <div class="plan-price">R$200</div>
+            <p>O maior período apresentado.</p>
+            <button
+              class="btn btn-primary"
+              type="button"
+              data-plan="10 meses"
+              data-price="R$200">
+              CONTRATAR AGORA
+            </button>
+            <div class="plan-note">Atendimento pelo WhatsApp</div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- COMO FUNCIONA -->
+
+    <section class="section" id="como-funciona">
+      <div class="container">
+
+        <div class="section-heading reveal">
+          <span class="eyebrow">SIMPLES E DIRETO</span>
+          <h2>Como <span class="gradient-text">funciona?</span></h2>
+          <p>Veja como iniciar seu atendimento.</p>
         </div>
 
         <div class="steps">
-          <article class="step">
-            <div class="step-number">1</div>
+
+          <article class="card step-card reveal">
+            <div class="step-number">01</div>
             <h3>Escolha seu plano</h3>
-            <p>Confira os períodos e selecione a opção desejada.</p>
+            <p>Confira os períodos e valores disponíveis.</p>
           </article>
 
-          <article class="step">
-            <div class="step-number">2</div>
-            <h3>Entre em contato</h3>
-            <p>Envie sua solicitação pelo WhatsApp.</p>
+          <article class="card step-card reveal">
+            <div class="step-number">02</div>
+            <h3>Escolha o vendedor</h3>
+            <p>Selecione um dos contatos apresentados.</p>
           </article>
 
-          <article class="step">
-            <div class="step-number">3</div>
+          <article class="card step-card reveal">
+            <div class="step-number">03</div>
             <h3>Confirme os detalhes</h3>
-            <p>Verifique as condições e combine a contratação com o responsável.</p>
+            <p>Tire suas dúvidas antes de confirmar a contratação.</p>
           </article>
+
         </div>
       </div>
     </section>
 
-    <section id="comunidade">
+    <!-- GRUPO OFICIAL -->
+
+    <section class="section">
       <div class="container">
-        <div class="community-box">
-          <h2>Faça parte da comunidade</h2>
+        <div class="promo reveal">
+          <h2>Faça parte da <span class="gradient-text">comunidade!</span></h2>
           <p>
-            Entre em nossos canais para acompanhar novidades,
-            informações e atualizações.
+            Entre no grupo oficial para acompanhar
+            as novidades e publicações da ZRX & MST.
           </p>
 
-          <div class="community-links">
-            <a class="button button-primary"
-              href="https://chat.whatsapp.com/Hg1sLL4q61g4iVhb9YNX6S"
-              target="_blank" rel="noopener noreferrer">
-              Grupo WhatsApp
-            </a>
+          <a
+            class="btn btn-primary"
+            href="https://chat.whatsapp.com/Hg1sLL4q61g4iVhb9YNX6S"
+            target="_blank"
+            rel="noopener noreferrer">
+            💬 ENTRAR NO GRUPO OFICIAL
+          </a>
+        </div>
+      </div>
+    </section>
 
-            <a class="button button-outline"
+    <!-- CANAIS -->
+
+    <section class="section" id="canais">
+      <div class="container">
+
+        <div class="section-heading reveal">
+          <span class="eyebrow">FIQUE CONECTADO</span>
+          <h2>Nossos <span class="gradient-text">Canais</span></h2>
+          <p>
+            Acesse nossos canais e acompanhe as publicações.
+          </p>
+        </div>
+
+        <div class="channel-grid">
+
+          <article class="card channel-card reveal">
+            <div class="card-icon">📢</div>
+            <h3>ZRX & MST</h3>
+            <p>Canal oficial da plataforma.</p>
+            <a
+              class="btn btn-soft"
               href="https://whatsapp.com/channel/0029VbDvFzE42DciZPzjv731"
-              target="_blank" rel="noopener noreferrer">
-              Canal 1
+              target="_blank"
+              rel="noopener noreferrer">
+              ACESSAR CANAL ↗
             </a>
+          </article>
 
-            <a class="button button-outline"
+          <article class="card channel-card reveal">
+            <div class="card-icon">💻</div>
+            <h3>Devprocmition Official</h3>
+            <p>Conteúdos e novidades.</p>
+            <a
+              class="btn btn-soft"
               href="https://whatsapp.com/channel/0029VbCm3JVEFeXh7WwuA13i"
-              target="_blank" rel="noopener noreferrer">
-              Canal 2
+              target="_blank"
+              rel="noopener noreferrer">
+              ACESSAR CANAL ↗
             </a>
+          </article>
 
-            <a class="button button-outline"
+          <article class="card channel-card reveal">
+            <div class="card-icon">🤝</div>
+            <h3>Canal Conjunto</h3>
+            <p>Acompanhe o canal parceiro.</p>
+            <a
+              class="btn btn-soft"
               href="https://whatsapp.com/channel/0029ValKVsrBFLgb53LmY22v"
-              target="_blank" rel="noopener noreferrer">
-              Canal 3
+              target="_blank"
+              rel="noopener noreferrer">
+              ACESSAR CANAL ↗
             </a>
+          </article>
 
-            <a class="button button-outline"
-              href="https://t.me/+5549991604819"
-              target="_blank" rel="noopener noreferrer">
-              Telegram
-            </a>
-          </div>
         </div>
       </div>
     </section>
 
-    <section id="duvidas">
+    <!-- CONTATO -->
+
+    <section class="section" id="contato">
       <div class="container">
-        <div class="section-heading">
-          <small>PERGUNTAS FREQUENTES</small>
-          <h2>Ficou com dúvidas?</h2>
-          <p>Confira algumas informações importantes.</p>
+
+        <div class="section-heading reveal">
+          <span class="eyebrow">FALE COM A EQUIPE</span>
+          <h2>Atendimento <span class="gradient-text">Oficial</span></h2>
+          <p>
+            Escolha um contato para conversar com nossa equipe.
+            Os números não são exibidos nesta página.
+          </p>
         </div>
 
-        <input
-          class="search-box"
-          id="faqSearch"
-          type="search"
-          placeholder="Pesquisar dúvida..."
-          aria-label="Pesquisar dúvidas"
-        >
+        <div class="cards">
 
-        <div class="faq-list" id="faqList">
-          <details class="faq-item" data-search="como contratar plano">
-            <summary>Como faço para contratar?</summary>
-            <p>Escolha um plano e clique em contratar. Você será direcionado ao WhatsApp para conversar com o responsável.</p>
-          </details>
-
-          <details class="faq-item" data-search="formas pagamento valor pix">
-            <summary>Como confirmar o pagamento?</summary>
-            <p>Consulte o responsável pelo atendimento para confirmar as formas de pagamento disponíveis.</p>
-          </details>
-
-          <details class="faq-item" data-search="prazo duração dias meses">
-            <summary>Qual é a duração dos planos?</summary>
-            <p>Os períodos disponíveis são de 30 dias, 2 meses, 4 meses, 6 meses e 10 meses.</p>
-          </details>
-
-          <details class="faq-item" data-search="suporte ajuda atendimento">
-            <summary>Como consigo atendimento?</summary>
-            <p>Entre em contato com um dos responsáveis pelos botões de WhatsApp disponíveis nesta página.</p>
-          </details>
-        </div>
-
-        <p class="empty-message" id="faqEmpty">
-          Nenhuma dúvida encontrada.
-        </p>
-      </div>
-    </section>
-
-    <section id="contato">
-      <div class="container">
-        <div class="section-heading">
-          <small>FALE CONOSCO</small>
-          <h2>Entre em contato</h2>
-          <p>Escolha um dos atendentes para tirar suas dúvidas.</p>
-        </div>
-
-        <div class="contact-grid">
-          <article class="contact-card">
-            <div class="feature-icon">💬</div>
-            <h3>Atendimento 01</h3>
-            <p>Fale com o primeiro responsável.</p>
-            <a class="button button-primary"
+          <article class="card contact-card reveal">
+            <div class="card-icon">📱</div>
+            <h3>Vendedor 1</h3>
+            <p>Atendimento direto pelo WhatsApp.</p>
+            <a
+              class="btn btn-primary"
               href="https://wa.me/554988479895"
-              target="_blank" rel="noopener noreferrer">
-              Abrir WhatsApp
+              target="_blank"
+              rel="noopener noreferrer">
+              CHAMAR NO WHATSAPP
             </a>
           </article>
 
-          <article class="contact-card">
-            <div class="feature-icon">📲</div>
-            <h3>Atendimento 02</h3>
-            <p>Fale com o segundo responsável.</p>
-            <a class="button button-primary"
+          <article class="card contact-card reveal">
+            <div class="card-icon">📲</div>
+            <h3>Vendedor 2</h3>
+            <p>Atendimento direto pelo WhatsApp.</p>
+            <a
+              class="btn btn-primary"
               href="https://wa.me/559185707111"
-              target="_blank" rel="noopener noreferrer">
-              Abrir WhatsApp
+              target="_blank"
+              rel="noopener noreferrer">
+              CHAMAR NO WHATSAPP
             </a>
           </article>
+
+          <article class="card contact-card reveal">
+            <div class="card-icon">✈️</div>
+            <h3>Telegram</h3>
+            <p>Entre em contato pelo Telegram.</p>
+            <a
+              class="btn btn-primary"
+              href="https://t.me/+5549991604819"
+              target="_blank"
+              rel="noopener noreferrer">
+              ABRIR TELEGRAM
+            </a>
+          </article>
+
+        </div>
+
+        <p class="responsible">
+          Responsável pela plataforma:
+          <strong>@AKIRAZR</strong>
+        </p>
+
+      </div>
+    </section>
+
+    <!-- FAQ -->
+
+    <section class="section" id="duvidas">
+      <div class="container">
+
+        <div class="section-heading reveal">
+          <span class="eyebrow">CENTRAL DE AJUDA</span>
+          <h2>Perguntas <span class="gradient-text">frequentes</span></h2>
+          <p>Encontre respostas para as dúvidas mais comuns.</p>
+        </div>
+
+        <div class="faq-list">
+
+          <div class="faq-item reveal">
+            <button class="faq-question" type="button" aria-expanded="false">
+              <span>Como faço para contratar um plano?</span>
+              <span class="faq-symbol">＋</span>
+            </button>
+            <div class="faq-answer">
+              Escolha um plano, clique em CONTRATAR AGORA
+              e selecione um vendedor para abrir a conversa
+              no WhatsApp.
+            </div>
+          </div>
+
+          <div class="faq-item reveal">
+            <button class="faq-question" type="button" aria-expanded="false">
+              <span>Posso tirar dúvidas antes de contratar?</span>
+              <span class="faq-symbol">＋</span>
+            </button>
+            <div class="faq-answer">
+              Sim. Converse com um dos vendedores e esclareça
+              suas dúvidas antes de confirmar.
+            </div>
+          </div>
+
+          <div class="faq-item reveal">
+            <button class="faq-question" type="button" aria-expanded="false">
+              <span>Como entro no grupo oficial?</span>
+              <span class="faq-symbol">＋</span>
+            </button>
+            <div class="faq-answer">
+              Clique no botão de grupo oficial disponível
+              nesta página.
+            </div>
+          </div>
+
+          <div class="faq-item reveal">
+            <button class="faq-question" type="button" aria-expanded="false">
+              <span>O site confirma o pagamento?</span>
+              <span class="faq-symbol">＋</span>
+            </button>
+            <div class="faq-answer">
+              Não. O site apenas encaminha você ao atendimento.
+              Confirme os detalhes diretamente com o vendedor.
+            </div>
+          </div>
+
+          <div class="faq-item reveal">
+            <button class="faq-question" type="button" aria-expanded="false">
+              <span>Onde encontro os canais oficiais?</span>
+              <span class="faq-symbol">＋</span>
+            </button>
+            <div class="faq-answer">
+              Acesse a seção Nossos Canais para encontrar
+              os links disponíveis.
+            </div>
+          </div>
+
+          <div class="faq-item reveal">
+            <button class="faq-question" type="button" aria-expanded="false">
+              <span>Como funciona a contratação pelo WhatsApp?</span>
+              <span class="faq-symbol">＋</span>
+            </button>
+            <div class="faq-answer">
+              Ao escolher um plano, o site prepara uma mensagem
+              com o período e o valor para facilitar o atendimento.
+            </div>
+          </div>
+
         </div>
       </div>
     </section>
+
   </main>
+
+  <!-- RODAPÉ -->
 
   <footer>
     <div class="container">
-      <p><strong>ZRX & MST</strong> — Aluguel de Bots para WhatsApp.</p>
-      <p>Responsável: @AKIRAZR</p>
-      <p>© <span id="year"></span> ZRX & MST. Todos os direitos reservados.</p>
+
+      <div class="footer-brand gradient-text">ZRX & MST</div>
+
+      <div class="footer-subtitle">
+        TECNOLOGIA • AUTOMAÇÃO • COMUNIDADE
+      </div>
+
+      <div class="footer-links">
+        <a href="#inicio">Início</a>
+        <a href="#sobre">Sobre</a>
+        <a href="#planos">Planos</a>
+        <a href="#canais">Canais</a>
+        <a href="#contato">Contato</a>
+        <a href="#duvidas">Ajuda</a>
+      </div>
+
+      <div class="copyright">
+        Responsável: @AKIRAZR<br>
+        © <span id="year"></span> ZRX & MST.
+        Todos os direitos reservados.
+      </div>
+
     </div>
   </footer>
 
-  <a class="floating-group"
+  <!-- BOTÕES FLUTUANTES -->
+
+  <a
+    class="float-group"
     href="https://chat.whatsapp.com/Hg1sLL4q61g4iVhb9YNX6S"
-    target="_blank" rel="noopener noreferrer"
-    aria-label="Entrar no grupo WhatsApp"
-    title="Entrar no grupo">
-    ☎
+    target="_blank"
+    rel="noopener noreferrer">
+    💬 GRUPO OFICIAL
   </a>
 
-  <button class="back-top" id="backTop" type="button"
-    aria-label="Voltar ao topo" title="Voltar ao topo">
-    ↑
+  <button class="music-button" id="musicButton" type="button">
+    🎵 ATIVAR MÚSICA
   </button>
 
-  <dialog id="planDialog">
-    <h2>Confirmar contratação</h2>
-    <p id="selectedPlanText">Plano selecionado.</p>
+  <div id="youtube-player" aria-hidden="true"></div>
 
-    <div class="dialog-actions">
-      <a class="button button-primary" id="sellerOne" href="#"
-        target="_blank" rel="noopener noreferrer">
-        Falar com atendimento 01
-      </a>
-
-      <a class="button button-outline" id="sellerTwo" href="#"
-        target="_blank" rel="noopener noreferrer">
-        Falar com atendimento 02
-      </a>
-
-      <button class="close-dialog" id="closeDialog" type="button">
-        Fechar
-      </button>
-    </div>
-  </dialog>
+  <!-- AVISO -->
 
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <!-- MODAL DE CONTRATAÇÃO -->
+
+  <dialog class="modal" id="orderModal" aria-labelledby="modalTitle">
+    <h2 id="modalTitle">ESCOLHA O VENDEDOR</h2>
+
+    <p id="selectedPlan">
+      Plano selecionado
+    </p>
+
+    <a
+      class="btn btn-primary"
+      id="sellerOne"
+      href="#"
+      target="_blank"
+      rel="noopener noreferrer">
+      📱 VENDEDOR 1
+    </a>
+
+    <a
+      class="btn btn-primary"
+      id="sellerTwo"
+      href="#"
+      target="_blank"
+      rel="noopener noreferrer">
+      📲 VENDEDOR 2
+    </a>
+
+    <button
+      class="modal-close"
+      id="closeModal"
+      type="button"
+      autofocus>
+      FECHAR JANELA
+    </button>
+  </dialog>
 
   <script>
     "use strict";
 
-    const themes = {
-      neon: {
-        primary: "#00d9ff",
-        secondary: "#7755ff",
-        background: "#080b16",
-        surface: "rgba(15, 22, 40, .88)",
-        text: "#f5f7ff",
-        muted: "#a5aec4"
-      },
-      ocean: {
-        primary: "#39a7ff",
-        secondary: "#1766c2",
-        background: "#07121f",
-        surface: "rgba(12, 29, 49, .90)",
-        text: "#f0f7ff",
-        muted: "#a8bdd2"
-      },
-      pink: {
-        primary: "#ff65b5",
-        secondary: "#a84dff",
-        background: "#160817",
-        surface: "rgba(38, 15, 42, .90)",
-        text: "#fff3fc",
-        muted: "#d4afcc"
-      },
-      green: {
-        primary: "#42e89b",
-        secondary: "#16a879",
-        background: "#07150f",
-        surface: "rgba(12, 34, 25, .90)",
-        text: "#effff5",
-        muted: "#a9cbb9"
-      },
-      ruby: {
-        primary: "#ff536d",
-        secondary: "#b82d54",
-        background: "#17080e",
-        surface: "rgba(42, 13, 25, .90)",
-        text: "#fff2f4",
-        muted: "#d2aab2"
-      },
-      gold: {
-        primary: "#ffc857",
-        secondary: "#c58a23",
-        background: "#151006",
-        surface: "rgba(39, 29, 12, .92)",
-        text: "#fff9e9",
-        muted: "#d2c29d"
-      },
-      light: {
-        primary: "#087eae",
-        secondary: "#6652c9",
-        background: "#e9eff8",
-        surface: "rgba(255, 255, 255, .94)",
-        text: "#142034",
-        muted: "#59677c"
-      }
+    /* CONFIGURAÇÕES */
+
+    const CONFIG = {
+      sellerOne: "554988479895",
+      sellerTwo: "559185707111",
+      group: "https://chat.whatsapp.com/Hg1sLL4q61g4iVhb9YNX6S",
+      youtubeVideo: "6SVt89VAlog"
     };
 
-    const root = document.documentElement;
-    const themeSelect = document.getElementById("themeSelect");
-    const colorPicker = document.getElementById("colorPicker");
-    const resetTheme = document.getElementById("resetTheme");
+    /* ELEMENTOS */
 
-    function applyTheme(theme) {
-      const palette = themes[theme];
-
-      if (!palette) return;
-
-      Object.entries(palette).forEach(([key, value]) => {
-        root.style.setProperty("--" + key, value);
-      });
-
-      themeSelect.value = theme;
-      colorPicker.value = palette.primary;
-      saveTheme({ name: theme, customColor: null });
-    }
-
-    function applyCustomColor(color) {
-      if (!/^#[0-9a-f]{6}$/i.test(color)) return;
-
-      root.style.setProperty("--primary", color);
-      root.style.setProperty("--border", color + "35");
-      colorPicker.value = color;
-      saveTheme({ name: "custom", customColor: color });
-    }
-
-    function saveTheme(value) {
-      try {
-        localStorage.setItem("zrx-mst-theme", JSON.stringify(value));
-      } catch (error) {
-        // O site continua funcionando mesmo sem armazenamento local.
-      }
-    }
-
-    function loadTheme() {
-      try {
-        const saved = JSON.parse(localStorage.getItem("zrx-mst-theme"));
-
-        if (saved && saved.name === "custom" && saved.customColor) {
-          applyCustomColor(saved.customColor);
-          themeSelect.value = "neon";
-          return;
-        }
-
-        if (saved && themes[saved.name]) {
-          applyTheme(saved.name);
-          return;
-        }
-      } catch (error) {
-        // Usa o tema padrão quando não há preferência salva.
-      }
-
-      applyTheme("neon");
-    }
-
-    themeSelect.addEventListener("change", () => {
-      applyTheme(themeSelect.value);
-    });
-
-    colorPicker.addEventListener("input", () => {
-      applyCustomColor(colorPicker.value);
-    });
-
-    resetTheme.addEventListener("click", () => {
-      applyTheme("neon");
-      showToast("Tema restaurado!");
-    });
-
-    const planDialog = document.getElementById("planDialog");
-    const selectedPlanText = document.getElementById("selectedPlanText");
-    const sellerOne = document.getElementById("sellerOne");
-    const sellerTwo = document.getElementById("sellerTwo");
-
-    function createWhatsAppLink(number, plan, price) {
-      const message =
-        "Olá! Tenho interesse no aluguel de bot da ZRX & MST.\n\n" +
-        "Plano: " + plan + "\n" +
-        "Valor informado: " + price + "\n\n" +
-        "Gostaria de confirmar os detalhes da contratação.";
-
-      return "https://wa.me/" + number + "?text=" +
-        encodeURIComponent(message);
-    }
-
-    document.querySelectorAll(".select-plan").forEach(button => {
-      button.addEventListener("click", () => {
-        const plan = button.dataset.plan;
-        const price = button.dataset.price;
-
-        selectedPlanText.textContent =
-          "Você selecionou o plano de " + plan +
-          " pelo valor de " + price + ".";
-
-        sellerOne.href = createWhatsAppLink("554988479895", plan, price);
-        sellerTwo.href = createWhatsAppLink("559185707111", plan, price);
-
-        planDialog.showModal();
-      });
-    });
-
-    document.getElementById("closeDialog").addEventListener("click", () => {
-      planDialog.close();
-    });
-
-    planDialog.addEventListener("click", event => {
-      if (event.target === planDialog) {
-        planDialog.close();
-      }
-    });
-
-    const planSearch = document.getElementById("planSearch");
-    const planCards = [...document.querySelectorAll(".plan-card")];
-    const plansEmpty = document.getElementById("plansEmpty");
-
-    planSearch.addEventListener("input", () => {
-      const query = planSearch.value.trim().toLowerCase();
-      let visibleCount = 0;
-
-      planCards.forEach(card => {
-        const content = (card.textContent + " " + card.dataset.search)
-          .toLowerCase();
-
-        const visible = content.includes(query);
-        card.hidden = !visible;
-
-        if (visible) visibleCount++;
-      });
-
-      plansEmpty.style.display = visibleCount === 0 ? "block" : "none";
-    });
-
-    const faqSearch = document.getElementById("faqSearch");
-    const faqItems = [...document.querySelectorAll(".faq-item")];
-    const faqEmpty = document.getElementById("faqEmpty");
-
-    faqSearch.addEventListener("input", () => {
-      const query = faqSearch.value.trim().toLowerCase();
-      let visibleCount = 0;
-
-      faqItems.forEach(item => {
-        const content = (item.textContent + " " + item.dataset.search)
-          .toLowerCase();
-
-        const visible = content.includes(query);
-        item.hidden = !visible;
-
-        if (visible) visibleCount++;
-      });
-
-      faqEmpty.style.display = visibleCount === 0 ? "block" : "none";
-    });
-
-    const progress = document.getElementById("progress");
-    const backTop = document.getElementById("backTop");
-
-    function updateScroll() {
-      const scrollable =
-        document.documentElement.scrollHeight - window.innerHeight;
-
-      const percentage = scrollable > 0
-        ? (window.scrollY / scrollable) * 100
-        : 0;
-
-      progress.style.width = percentage + "%";
-      backTop.style.display = window.scrollY > 450 ? "grid" : "none";
-    }
-
-    window.addEventListener("scroll", updateScroll, { passive: true });
-
-    backTop.addEventListener("click", () => {
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    });
-
+    const navLinks = document.getElementById("navLinks");
+    const menuToggle = document.getElementById("menuToggle");
+    const modal = document.getElementById("orderModal");
     const toast = document.getElementById("toast");
-    let toastTimer;
+    const musicButton = document.getElementById("musicButton");
 
-    function showToast(message) {
-      toast.textContent = message;
-      toast.classList.add("show");
-
-      clearTimeout(toastTimer);
-
-      toastTimer = setTimeout(() => {
-        toast.classList.remove("show");
-      }, 2500);
-    }
+    let toastTimer = null;
+    let lastPlanButton = null;
 
     document.getElementById("year").textContent =
       new Date().getFullYear();
 
-    loadTheme();
-    updateScroll();
+    /* MENU MOBILE */
+
+    menuToggle.addEventListener("click", () => {
+      const opened = navLinks.classList.toggle("open");
+
+      menuToggle.setAttribute("aria-expanded", String(opened));
+      menuToggle.textContent = opened ? "×" : "☰";
+      menuToggle.setAttribute(
+        "aria-label",
+        opened ? "Fechar menu" : "Abrir menu"
+      );
+    });
+
+    navLinks.querySelectorAll("a").forEach(link => {
+      link.addEventListener("click", () => {
+        navLinks.classList.remove("open");
+        menuToggle.setAttribute("aria-expanded", "false");
+        menuToggle.textContent = "☰";
+        menuToggle.setAttribute("aria-label", "Abrir menu");
+      });
+    });
+
+    /* AVISOS */
+
+    function showToast(message) {
+      toast.textContent = message;
+      toast.classList.add("visible");
+
+      clearTimeout(toastTimer);
+
+      toastTimer = setTimeout(() => {
+        toast.classList.remove("visible");
+      }, 3200);
+    }
+
+    /* CONTRATAÇÃO */
+
+    function openPlan(plan, price, triggerButton) {
+      lastPlanButton = triggerButton;
+
+      const message =
+        `Olá! Tenho interesse no aluguel de bot da ZRX & MST.\n` +
+        `Plano: ${plan}\n` +
+        `Valor informado: ${price}\n` +
+        `Gostaria de confirmar os detalhes.`;
+
+      const encodedMessage = encodeURIComponent(message);
+
+      document.getElementById("selectedPlan").textContent =
+        `Plano escolhido: ${plan} — ${price}. Selecione um vendedor para continuar.`;
+
+      document.getElementById("sellerOne").href =
+        `https://wa.me/${CONFIG.sellerOne}?text=${encodedMessage}`;
+
+      document.getElementById("sellerTwo").href =
+        `https://wa.me/${CONFIG.sellerTwo}?text=${encodedMessage}`;
+
+      if (!modal.open) {
+        modal.showModal();
+      }
+    }
+
+    document.querySelectorAll("[data-plan]").forEach(button => {
+      button.addEventListener("click", () => {
+        openPlan(
+          button.dataset.plan,
+          button.dataset.price,
+          button
+        );
+      });
+    });
+
+    /* FECHAR MODAL */
+
+    function closeModal() {
+      if (modal.open) {
+        modal.close();
+      }
+    }
+
+    document.getElementById("closeModal").addEventListener(
+      "click",
+      closeModal
+    );
+
+    modal.addEventListener("click", event => {
+      if (event.target === modal) {
+        closeModal();
+      }
+    });
+
+    modal.addEventListener("close", () => {
+      if (lastPlanButton) {
+        lastPlanButton.focus();
+      }
+    });
+
+    /* FAQ */
+
+    document.querySelectorAll(".faq-question").forEach(button => {
+      button.addEventListener("click", () => {
+        const item = button.closest(".faq-item");
+        const opened = item.classList.toggle("open");
+
+        button.setAttribute("aria-expanded", String(opened));
+
+        const symbol = button.querySelector(".faq-symbol");
+        symbol.textContent = opened ? "−" : "＋";
+      });
+    });
+
+    /* ANIMAÇÕES DE ENTRADA */
+
+    const revealElements = document.querySelectorAll(".reveal");
+
+    if ("IntersectionObserver" in window) {
+      const revealObserver = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+            revealObserver.unobserve(entry.target);
+          }
+        });
+      }, {
+        threshold: 0.12
+      });
+
+      revealElements.forEach(element => {
+        revealObserver.observe(element);
+      });
+    } else {
+      revealElements.forEach(element => {
+        element.classList.add("visible");
+      });
+    }
+
+    /* DESTAQUE DO MENU CONFORME A SEÇÃO */
+
+    const pageSections = document.querySelectorAll("main section[id]");
+    const menuItems = document.querySelectorAll(".nav-links a");
+
+    if ("IntersectionObserver" in window) {
+      const sectionObserver = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (!entry.isIntersecting) return;
+
+          menuItems.forEach(link => {
+            const active = link.getAttribute("href") ===
+              `#${entry.target.id}`;
+
+            link.classList.toggle("active", active);
+          });
+        });
+      }, {
+        rootMargin: "-35% 0px -55% 0px"
+      });
+
+      pageSections.forEach(section => {
+        sectionObserver.observe(section);
+      });
+    }
+
+    /* PLAYER DO YOUTUBE */
+
+    let ytPlayer = null;
+    let ytReady = false;
+    let musicPlaying = false;
+
+    window.onYouTubeIframeAPIReady = function() {
+      ytPlayer = new YT.Player("youtube-player", {
+        width: "1",
+        height: "1",
+        videoId: CONFIG.youtubeVideo,
+
+        playerVars: {
+          autoplay: 0,
+          controls: 0,
+          loop: 1,
+          playlist: CONFIG.youtubeVideo,
+          playsinline: 1
+        },
+
+        events: {
+          onReady: function() {
+            ytReady = true;
+          },
+
+          onStateChange: function(event) {
+            if (event.data === YT.PlayerState.ENDED) {
+              ytPlayer.playVideo();
+            }
+
+            if (event.data === YT.PlayerState.PLAYING) {
+              musicPlaying = true;
+              musicButton.textContent = "⏸ PAUSAR MÚSICA";
+            }
+
+            if (event.data === YT.PlayerState.PAUSED) {
+              musicPlaying = false;
+              musicButton.textContent = "🎵 ATIVAR MÚSICA";
+            }
+          },
+
+          onError: function() {
+            musicButton.textContent = "🎵 MÚSICA INDISPONÍVEL";
+            showToast("Este vídeo pode não permitir reprodução incorporada.");
+          }
+        }
+      });
+    };
+
+    /* CONTROLE DA MÚSICA */
+
+    musicButton.addEventListener("click", () => {
+      if (!ytReady || !ytPlayer) {
+        showToast("O player está carregando. Tente novamente em instantes.");
+        return;
+      }
+
+      if (musicPlaying) {
+        ytPlayer.pauseVideo();
+      } else {
+        ytPlayer.setVolume(35);
+        ytPlayer.playVideo();
+      }
+    });
+
+    /* CARREGAR API DO YOUTUBE */
+
+    const youtubeApi = document.createElement("script");
+    youtubeApi.src = "https://www.youtube.com/iframe_api";
+    youtubeApi.async = true;
+    document.head.appendChild(youtubeApi);
+
+    /* TESTAR IMAGEM DE FUNDO */
+
+    const backgroundTest = new Image();
+
+    backgroundTest.onload = () => {
+      console.info("ZRX & MST: imagem de fundo carregada.");
+    };
+
+    backgroundTest.onerror = () => {
+      showToast("A imagem de fundo não carregou. Confira o link do GitHub.");
+    };
+
+    backgroundTest.src =
+      "https://raw.githubusercontent.com/hackermesteriozo-blip/ZRX-MST/main/WhatsApp%20Image%202026-11-13%20at%2021.55.11.jpeg";
+
   </script>
+
 </body>
 </html>
